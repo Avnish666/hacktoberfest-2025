@@ -1,0 +1,19 @@
+class Solution {
+    public int trap(int[] height) {
+        int maxl[]=new int[height.length];
+        int maxr[]=new int[height.length];
+        int count=0;
+        maxl[0]=height[0];
+        maxr[height.length-1]=height[height.length-1];
+        for(int i=1;i<height.length;i++){
+            maxl[i]=Math.max(height[i],maxl[i-1]);
+            maxr[height.length-i-1]=Math.max(height[height.length-1-i],maxr[height.length-i]);
+           
+         }
+        for(int i=0;i<height.length;i++){
+            count+=Math.min(maxr[i],maxl[i])-height[i];
+          
+        }
+        return count;
+        }
+    }
